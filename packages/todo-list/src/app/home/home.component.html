@@ -1,0 +1,25 @@
+<h1>TODOS</h1>
+<div class="shadow">
+  <mfe-todo-task-input (doAdd)="addTodo($event)"></mfe-todo-task-input>
+
+  <div id="list" *ngIf="todoList | async as todos" class="centered">
+    <ul class="ul-todos">
+      <ng-container *ngFor="let todo of todos">
+        <mfe-todo-task
+          [singleTodo]="todo"
+          (doComplete)="completeToggle($event)"
+          (doEdit)="editTodo($event)"
+          (doRemove)="removeTodo($event)"></mfe-todo-task>
+
+
+      </ng-container>
+    </ul>
+    <div id="footer" class="footer" *ngIf="metadata | async as meta">
+<!--      <app-todofooter [metadata]="metadata | async"-->
+<!--                      [curFilter]="curFilter | async"-->
+<!--                      [filterOptions]="todoService.filterOptions"-->
+<!--                      (delCompleted)="clearCompleted()"-->
+<!--                      (filterSelected)="updateCurFilter($event)"></app-todofooter>-->
+    </div>
+  </div>
+</div>

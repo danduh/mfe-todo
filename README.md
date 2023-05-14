@@ -15,3 +15,15 @@ Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and 
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
+
+
+```bash
+nx g @nrwl/angular:host todo-host --remotes=todo-list --remotes=todo-stats
+
+nx g @nrwl/angular:library todo-ui
+
+nx g @nrwl/angular:component task --standalone --project=todo-ui --dry-run 
+nx g @nrwl/angular:component tasks-list --standalone --project=todo-ui
+nx g @nrwl/angular:component task-input --standalone --project=todo-ui 
+nx g @nrwl/angular:component sats --standalone --project=todo-ui
+```

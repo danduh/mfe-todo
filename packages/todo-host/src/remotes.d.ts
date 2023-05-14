@@ -1,3 +1,2 @@
-declare module 'todo-ng/Module';
-declare module 'todo-rc/Module';
-
+declare module 'todo-list/Module';
+declare module 'todo-stats/Module';
