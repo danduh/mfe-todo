@@ -1,0 +1,122 @@
+{
+  "name": "todo-footer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "mfe-todo",
+  "sourceRoot": "packages/todo-footer/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/todo-footer",
+        "index": "packages/todo-footer/src/index.html",
+        "main": "packages/todo-footer/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "packages/todo-footer/tsconfig.app.json",
+        "assets": [
+          "packages/todo-footer/src/favicon.ico",
+          "packages/todo-footer/src/assets"
+        ],
+        "styles": ["packages/todo-footer/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "packages/todo-footer/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "packages/todo-footer/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:webpack-dev-server",
+      "options": {
+        "port": 4203,
+        "publicHost": "http://localhost:4203"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "todo-footer:build:production"
+        },
+        "development": {
+          "browserTarget": "todo-footer:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "todo-footer:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/todo-footer/**/*.ts",
+          "packages/todo-footer/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/todo-footer/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "todo-footer:build",
+        "port": 4203,
+        "watch": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "todo-footer:build:development"
+        },
+        "production": {
+          "buildTarget": "todo-footer:build:production"
+        }
+      }
+    }
+  }
+}

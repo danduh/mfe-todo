@@ -1,33 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { AsyncPipe, CommonModule } from "@angular/common";
 import { TaskComponent, TaskInputComponent, Todo } from "@mfe-todo/todo-ui";
 import { Observable } from "rxjs";
-import { TodoService } from "../todo.service";
 import { HttpClientModule } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { RouterLink, RouterOutlet } from "@angular/router";
+import { TodoApiService } from "@mfe-todo/data-layer";
+
 
 @Component({
   selector: 'mfe-todo-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [TodoService],
-  imports: [AsyncPipe, TaskComponent, CommonModule, TaskInputComponent, HttpClientModule],
+  providers: [TodoApiService],
+  imports: [AsyncPipe, TaskComponent, CommonModule, TaskInputComponent, HttpClientModule, RouterOutlet, RouterLink],
   standalone: true,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   public todoList!: Observable<Todo[]>;
+  public todoListSig: WritableSignal<Todo[]> = signal([]);
   public curFilter!: Observable<unknown>;
   public metadata!: any;
+  private todoService: TodoApiService
 
-  constructor(private todoService: TodoService) {
+  constructor() {
+    this.todoService = inject(TodoApiService)
   }
 
   ngOnInit() {
-    this.todoList = this.todoService.getTodoList().pipe(
-      map((resp) => {
-        return resp.todos
+    // loadRemoteModule({ type: 'module', remoteEntry: "todo-footer",  })
+    this.todoService.getTodoList()
+      .subscribe((resp) => {
+        this.todoListSig.set(resp.todos)
       })
-    )
 
     // this.curFilter = this.store
     //   .pipe(

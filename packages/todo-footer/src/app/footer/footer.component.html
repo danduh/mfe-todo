@@ -1,0 +1,15 @@
+<div id="counter" class="counter shadow">{{metadata()?.active}} items left
+
+  <ul class="ul-filter">
+    <li *ngFor="let filter of filterOptions">
+      <button class="button-def" [class.selected-filter]="curFilter===filter"
+              (click)="setFilter(filter)">{{filter}}</button>
+    </li>
+    <li>
+      <button class="button-def clear-completed" (click)="deleteCompleted()" *ngIf="metadata()?.completed">Clear completed
+      </button>
+    </li>
+  </ul>
+
+  <a routerLink="/stat">View Statistics</a>
+</div>

@@ -107,7 +107,7 @@
       "options": {
         "buildTarget": "todo-list:build",
         "port": 4201,
-        "watch": false
+        "watch": true
       },
       "configurations": {
         "development": {

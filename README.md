@@ -25,5 +25,7 @@ nx g @nrwl/angular:library todo-ui
 nx g @nrwl/angular:component task --standalone --project=todo-ui --dry-run 
 nx g @nrwl/angular:component tasks-list --standalone --project=todo-ui
 nx g @nrwl/angular:component task-input --standalone --project=todo-ui 
-nx g @nrwl/angular:component sats --standalone --project=todo-ui
+nx g @nrwl/angular:component stats --standalone --project=todo-ui
+nx g @nrwl/angular:component footer --standalone --project=todo-footer
 ```
+nx g @nrwl/angular:remote todo-footer --host=todo-list --port=4203 --dry-run

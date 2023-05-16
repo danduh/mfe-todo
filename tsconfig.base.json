@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mfe-todo/data-layer": ["packages/data-layer/src/index.ts"],
       "@mfe-todo/todo-ui": ["packages/todo-ui/src/index.ts"]
     }
   },

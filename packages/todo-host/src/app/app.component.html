@@ -1,6 +1,9 @@
-<ul class="remote-menu">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="todo-list">TodoList</a></li>
-  <li><a routerLink="todo-stats">TodoStats</a></li>
-</ul>
-<router-outlet></router-outlet>
+<div class="page-wrapper">
+  <ul class="remote-menu">
+    <li><a routerLink="/">Home</a></li>
+    <li><a [routerLink]="[{outlets:{footerPlace:['todo-footer'], primary:['todo-list']}}]">TodoList</a></li>
+    <li><a routerLink="todo-stats">TodoStats</a></li>
+  </ul>
+  <router-outlet name="primary"></router-outlet>
+  <router-outlet name="footerPlace"></router-outlet>
+</div>

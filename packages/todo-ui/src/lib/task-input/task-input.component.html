@@ -1,1 +1,5 @@
-<p>task-input works!</p>
+<div id="todoInput" class="centered">
+  <input class="centered-block"
+         #newTodo placeholder="What needs to be done?" autofocus
+         (keyup.enter)="addNewTodo(newTodo.value); newTodo.value=''"/>
+</div>

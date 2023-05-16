@@ -1,4 +1,4 @@
 module.exports = {
   name: 'todo-host',
-  remotes: ['todo-list', 'todo-stats'],
+  remotes: ['todo-list', 'todo-stats', 'todo-footer'],
 };
